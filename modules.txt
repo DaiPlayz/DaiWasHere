@@ -1,0 +1,10 @@
+asyncio
+discord
+threading
+colorama
+pystyle
+pypresence
+os
+time
+requests
+random
