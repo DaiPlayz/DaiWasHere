@@ -3,32 +3,33 @@ name: Build macOS App - DaiWasHere
 on:
   push:
     branches:
-      - main 
+      - main
+
 jobs:
   build:
-    runs-on: macos-latest 
+    runs-on: macos-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9' 
+          python-version: '3.9'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyinstaller  # Install PyInstaller
-          pip install -r requirements.txt  # Install any additional dependencies
+          pip install pyinstaller
+          pip install -r requirements.txt
 
       - name: Build macOS app with PyInstaller
         run: |
           pyinstaller --onefile --windowed --name DaiWasHere main.py
 
       - name: Upload .app file
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: DaiWasHereApp
           path: dist/DaiWasHere.app
